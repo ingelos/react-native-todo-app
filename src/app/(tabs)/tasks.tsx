@@ -1,14 +1,22 @@
 import { globalStyles } from "@/styles/global";
-import { Link } from "expo-router";
-import { ScrollView, Text } from "react-native";
+import { FlatList, ScrollView, Text } from "react-native";
+import TaskCard from "../../components/TaskCard";
+import { useTasks } from "../../context/TaskContext.js";
+
 
 export default function TasksScreen() {
+    const { tasks } = useTasks();
+    
     return (
         <ScrollView style={globalStyles.container}>
             <Text style={globalStyles.title}>All tasks</Text>
-            <Link href='/add-task' style={{ fontSize: 18, color: '#007bff'}}>
-                Add New Task
-            </Link>
+            <FlatList
+                data={tasks}
+                keyExtractor={item => item.id}
+                renderItem={({item }) => (
+                    <TaskCard task={item}/>
+                )}
+                />
         </ScrollView>
     )
 }

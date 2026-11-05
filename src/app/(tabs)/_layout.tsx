@@ -12,7 +12,6 @@ export default function TabLayout() {
           borderTopColor: colors.surface,
         },
         tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.textSecondary,
       }}
     >
       <Tabs.Screen
@@ -20,25 +19,25 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, size}) => (
-            <Ionicons name='home' size={size} color={color} />
+            <Ionicons 
+              name='home' 
+              size={size} 
+              color={color} 
+            />
           ),
         }}
       />
-      <Tabs.Screen
-        name='add-task'
-        options={{
-          title: 'Add task',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name='add-circle' size={size} color={color} />
-          ),
-        }}
-        />
+ 
       <Tabs.Screen
         name='tasks'
         options={{
           title: 'All tasks',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name='list' size={size} color={color} />
+            <Ionicons 
+              name='list' 
+              size={size} 
+              color={color} 
+            />
           ),
         }}
         />
