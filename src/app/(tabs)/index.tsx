@@ -1,21 +1,13 @@
 import HomeHeader from "@/components/HomeHeader";
-import TaskCard from "@/components/TaskCard";
 import { globalStyles } from "@/styles/global";
 import { router } from "expo-router";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import TaskList from "../../components/TaskList";
 import { useTasks } from "../../context/TaskContext.js";
 
 export default function HomeScreen() {
   const { tasks } = useTasks();
 
-  const priorityOrder = {
-    urgent: 1,
-    secondary: 2,
-    additional: 3
-  };
-
-  const sortedTasks = [...tasks].sort(
-    (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
 
   return (
     <View style={globalStyles.screen}>
@@ -25,21 +17,8 @@ export default function HomeScreen() {
       
       <HomeHeader />
       
-      <FlatList
-        style={styles.taskList}
-        data={sortedTasks}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <TaskCard task={item} />
-        )}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-        ListEmptyComponent={
-          <Text style={styles.emptyText}>
-            No tasks yet. Add your first task!
-          </Text>
-        }
-      />
+      <TaskList tasks={tasks}/>
+
       <View style={styles.footer}>
         <TouchableOpacity
           style={styles.addButton}
@@ -58,18 +37,7 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
 
-  taskList: {
-    flex: 1,
-  },
-  listContent: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    gap: 12,
-  },
-  emptyText: {
-    textAlign: 'center',
-    marginTop: 30,
-  },
+ 
   footer: {
     paddingTop: 15,
     paddingBottom: 15,
