@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     date: {
         fontSize: 14,
         color: colors.primary,
-        marginTop: 4,
-        marginBottom: 30,
+        marginBottom: 20,
     }
 })

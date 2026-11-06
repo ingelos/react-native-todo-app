@@ -21,6 +21,8 @@ const styles = StyleSheet.create({
     button: {
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 5,
+        paddingBottom: 5,
     },
     buttonText: {
         fontSize: 16,

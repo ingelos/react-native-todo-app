@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
-export default function TaskCard({ task }) {
+export default function TaskCard({ task, onToggleHome }) {
     const { toggleTask, deleteTask } = useTasks();
 
     const priorityColors = {
@@ -12,7 +12,7 @@ export default function TaskCard({ task }) {
             border: '#747b70',
         },
         secondary: {
-            background: '#bca28b',
+            background: '#c7ac95',
             border: '#8d7d6e',
         },
         additional: {
@@ -39,7 +39,7 @@ export default function TaskCard({ task }) {
             >
                 <Ionicons
                     name={task.completed ? 'checkmark-circle' : 'ellipse-outline'}
-                    size={24}
+                    size={22}
                     color={colors.text}
                 />
             </TouchableOpacity>
@@ -55,11 +55,19 @@ export default function TaskCard({ task }) {
                 </Text>
             </TouchableOpacity>
 
+            <TouchableOpacity onPress={onToggleHome}>
+                <Ionicons
+                    name={task.shownOnHome ? 'home' : 'home-outline'}
+                    size={20}
+                    color={task.shownOnHome ? '#f8f3ef' : '#595757'}
+                />
+            </TouchableOpacity>
+
             <TouchableOpacity
                 onPress={() => deleteTask(task.id)}
                 style={styles.deleteButton}
             >
-                <Ionicons  
+                <Ionicons
                     name='trash-outline'
                     size={20}
                 />
@@ -77,7 +85,6 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingHorizontal: 15,
         paddingVertical: 8,
-        // minHeight: 50,
     },
     checkbox: {
         marginRight: 12,
@@ -90,10 +97,7 @@ const styles = StyleSheet.create({
         fontWeight: '500'
     },
     completedCard: {
-        opacity: 0.65,
-    },
-    completedText: {
-        textDecorationLine: 'line-through',
+        opacity: 0.55,
     },
     deleteButton: {
         padding: 5,

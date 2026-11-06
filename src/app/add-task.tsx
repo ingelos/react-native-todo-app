@@ -9,7 +9,8 @@ export default function AddTaskScreen() {
 
     const [name, setName] = useState('');
     const [priority, setPriority] = useState('secondary');
- 
+
+
     const { addTask } = useTasks();
 
     const handleAddTask = () => {
@@ -25,82 +26,83 @@ export default function AddTaskScreen() {
     }
 
     const priorities = ['urgent', 'secondary', 'additional'];
-    
+
     return (
         <View style={globalStyles.screen}>
 
             <Text style={globalStyles.title}>Add Task</Text>
 
-            <View style={styles.formGroup}>
-                <Text style={styles.label}>Task name</Text>
+            <View style={styles.form}>
+                <View style={styles.formGroup}>
+                    <Text style={styles.label}>Task name</Text>
 
-                <TextInput
-                    style={styles.input}
-                    placeholder={'What do you need to do?'}
-                    placeholderTextColor={colors.text}
-                    value={name}
-                    onChangeText={setName}
-                />
-            </View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={'What do you need to do?'}
+                        placeholderTextColor={colors.text}
+                        value={name}
+                        onChangeText={setName}
+                    />
+                </View>
 
-            <View style={styles.formGroup}>
+                <View style={styles.formGroup}>
+                    <Text style={styles.label}>Priority</Text>
 
-                <Text style={styles.label}>Priority</Text>
+                    <View style={styles.priorityContainer}>
+                        {priorities.map(item => {
+                            const selected = priority === item;
 
-                <View style={styles.priorityContainer}>
-                    {priorities.map(item => {
-                        const selected = priority === item;
-
-                        return (
-                            <TouchableOpacity
-                                key={item}
-                                style={[
-                                    styles.priorityButton,
-                                    selected && styles.selectedPriority
-                                ]}
-                                onPress={() => setPriority(item)}
-                            >
-                                <Text style={[
-                                    styles.priorityText,
-                                    selected && styles.selectedPriorityText
-                                ]}
+                            return (
+                                <TouchableOpacity
+                                    key={item}
+                                    style={[
+                                        styles.priorityButton,
+                                        selected && styles.selectedPriority
+                                    ]}
+                                    onPress={() => setPriority(item)}
                                 >
-                                    {selected ? "✓" : ''}
-                                    {item}
-                                </Text>
-                            </TouchableOpacity>
-                        )
-                    })
-                    }
+                                    <Text style={[
+                                        styles.priorityText,
+                                        selected && styles.selectedPriorityText
+                                    ]}
+                                    >
+                                        {selected ? "✓" : ''}
+                                        {item}
+                                    </Text>
+                                </TouchableOpacity>
+                            )
+                        })
+                        }
+                    </View>
 
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity
+                            style={styles.cancelButton}
+                            onPress={handleCancel}
+                        >
+                            <Text style={styles.cancelButtonText}>
+                                Cancel
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.addButton}
+                            onPress={handleAddTask}
+                        >
+                            <Text style={styles.addButtonText}>
+                                Add task
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.cancelButton}
-                        onPress={handleCancel}
-                    >
-                        <Text style={styles.cancelButtonText}>
-                            Cancel
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.addButton}
-                        onPress={handleAddTask}
-                    >
-                        <Text style={styles.addButtonText}>
-                            Add task
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
             </View>
-
         </View>
     );
 }
 
 const styles = StyleSheet.create({
+    form: {
+        marginTop: 30,
+    },
     formGroup: {
         width: '100%',
         marginBottom: 24,
@@ -126,7 +128,7 @@ const styles = StyleSheet.create({
     },
     priorityButton: {
         flex: 1,
-        height: 48,
+        height: 45,
         borderWidth: 1,
         borderColor: '#d1d5db',
         borderRadius: 10,
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     selectedPriority: {
-         backgroundColor: colors.surface,
+        backgroundColor: colors.surface,
     },
     priorityText: {
         fontSize: 14,
@@ -153,9 +155,9 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
         flex: 1,
-        height: 50,
+        height: 45,
         borderWidth: 1,
-        borderColor:'#d1d5db',
+        borderColor: '#d1d5db',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -167,8 +169,10 @@ const styles = StyleSheet.create({
     },
     addButton: {
         flex: 1,
-        height: 50,
-        backgroundColor: '#806349',
+        height: 45,
+        backgroundColor: colors.primary,
+        borderColor: '#473d33',
+        borderWidth: 1,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',

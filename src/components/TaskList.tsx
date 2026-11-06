@@ -1,7 +1,10 @@
+import { useTasks } from "@/context/TaskContext";
 import { SectionList, StyleSheet, Text } from "react-native";
 import TaskCard from "./TaskCard";
 
 export default function TaskList({ tasks }) {
+
+    const {toggleShownOnHome} = useTasks();
 
     const priorityOrder = {
         urgent: 1,
@@ -17,15 +20,14 @@ export default function TaskList({ tasks }) {
         }))
         .filter(section => section.data.length > 0);
 
-    // const sortedTasks = [...tasks].sort(
-    //     (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-
     return (
         <SectionList
             sections={sections}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
-                <TaskCard task={item} />
+                <TaskCard 
+                    task={item} 
+                    onToggleHome={() => toggleShownOnHome(item.id)}/>
             )}
             renderSectionHeader={({ section }) => (
                 <Text style={styles.sectionHeader}>
@@ -40,27 +42,12 @@ export default function TaskList({ tasks }) {
                 </Text>
             }
         />
-        // <FlatList
-        //     data={sortedTasks}
-        //     keyExtractor={item => item.id}
-        //     renderItem={({ item }) => (
-        //         <TaskCard task={item} />
-        //     )}
-        //     showsVerticalScrollIndicator={false}
-        //     contentContainerStyle={styles.list}
-        //     ListEmptyComponent={
-        //         <Text style={styles.emptyText}>
-        //             No tasks yet. Add your first task!
-        //         </Text>
-        //     }
-        // />
     )
 }
 
 const styles = StyleSheet.create({
     sectionHeader: {
         fontSize: 14,
-
         marginTop: 16,
         marginBottom: 5,
     },

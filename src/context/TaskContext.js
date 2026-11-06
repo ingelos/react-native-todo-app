@@ -10,6 +10,7 @@ export function TaskProvider({ children }) {
             id: Date.now().toString(),
             name,
             priority,
+            shownOnHome: true,
             completed: false,
         };
 
@@ -26,13 +27,22 @@ export function TaskProvider({ children }) {
         )
     };
 
+    const toggleShownOnHome = (id) => {
+        setTasks(prevTasks => 
+            prevTasks.map(task =>
+                task.id === id
+                ? {...task, shownOnHome: !task.shownOnHome } : task
+            )
+        )
+    }
+
     const deleteTask = (id) => {
         setTasks(prevTasks => 
             prevTasks.filter(task => task.id !== id));
     };
 
     return (
-        <TaskContext.Provider value={{ tasks, addTask, toggleTask, deleteTask }}>
+        <TaskContext.Provider value={{ tasks, addTask, toggleTask, toggleShownOnHome, deleteTask }}>
             {children}
         </TaskContext.Provider>
     );

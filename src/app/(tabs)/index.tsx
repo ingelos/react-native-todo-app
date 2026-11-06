@@ -9,6 +9,8 @@ import { StyleSheet, Text, View } from "react-native";
 export default function HomeScreen() {
   const { tasks } = useTasks();
 
+  const homeTasks = tasks.filter(task => task.shownOnHome);
+
   return (
     <View style={globalStyles.screen}>
       <Text style={globalStyles.title}>
@@ -17,7 +19,7 @@ export default function HomeScreen() {
 
       <HomeHeader />
 
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={homeTasks}/>
   
       <View style={styles.footer}>
         <AddTaskButton
@@ -30,25 +32,10 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  taskList: {
-    flex: 1,
-  },
-  listContent: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    gap: 12,
-  },
-  emptyText: {
-    textAlign: 'center',
-    marginTop: 30,
-    color: '#888888',
-  },
-
   footer: {
     paddingTop: 15,
     paddingBottom: 15,
     gap: 12,
   },
-
 })
 

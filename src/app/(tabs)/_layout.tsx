@@ -23,12 +23,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      {/* <Tabs.Screen
-        name='add-task'
-        options={{
-          href: null,
-        }}
-      /> */}
       <Tabs.Screen
         name='tasks'
         options={{
