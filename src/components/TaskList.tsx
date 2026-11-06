@@ -14,14 +14,13 @@ export default function TaskList({ tasks }) {
 
     return (
         <FlatList
-            style={styles.taskList}
             data={sortedTasks}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
                 <TaskCard task={item} />
             )}
-            contentContainerStyle={styles.listContent}
             showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.list}
             ListEmptyComponent={
                 <Text style={styles.emptyText}>
                     No tasks yet. Add your first task!
@@ -32,12 +31,9 @@ export default function TaskList({ tasks }) {
 }
 
 const styles = StyleSheet.create({
-    taskList: {
+    list: {
         flex: 1,
-    },
-    listContent: {
-        paddingTop: 15,
-        paddingBottom: 15,
+        paddingVertical: 15,
         gap: 12,
     },
     emptyText: {

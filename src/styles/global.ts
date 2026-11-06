@@ -6,7 +6,6 @@ export const colors = {
     surface: '#1b1208e1',
     primary: '#523d35',
     text: '#223030',
-    // textSecondary: '#f8f3ef',
     alert: '#ff5252',
 }
 
@@ -17,7 +16,6 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 25,
         paddingTop: 50,
     },
-   
     title: {
         fontSize: 28,
         fontWeight: 'bold',

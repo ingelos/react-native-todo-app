@@ -1,23 +1,23 @@
+import { useTasks } from "@/context/TaskContext";
 import { colors, globalStyles } from "@/styles/global";
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useTasks } from "../context/TaskContext.js";
 
 
 export default function AddTaskScreen() {
+
     const [name, setName] = useState('');
     const [priority, setPriority] = useState('secondary');
-    const [isFocused, setIsFocused] = useState(false);
-
+ 
     const { addTask } = useTasks();
 
     const handleAddTask = () => {
         if (!name.trim()) return;
 
         addTask(name.trim(), priority);
-        router.replace('/');
 
+        router.replace('/');
     };
 
     const handleCancel = () => {
@@ -25,10 +25,9 @@ export default function AddTaskScreen() {
     }
 
     const priorities = ['urgent', 'secondary', 'additional'];
-
-
+    
     return (
-        <View style={globalStyles.container}>
+        <View style={globalStyles.screen}>
 
             <Text style={globalStyles.title}>Add Task</Text>
 
@@ -37,12 +36,10 @@ export default function AddTaskScreen() {
 
                 <TextInput
                     style={styles.input}
-                    placeholder={isFocused ? '' : 'What do you need to do?'}
+                    placeholder={'What do you need to do?'}
                     placeholderTextColor={colors.text}
                     value={name}
                     onChangeText={setName}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                 />
             </View>
 

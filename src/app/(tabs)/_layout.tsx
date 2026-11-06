@@ -18,29 +18,27 @@ export default function TabLayout() {
         name='index'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size}) => (
-            <Ionicons 
-              name='home' 
-              size={size} 
-              color={color} 
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='home' size={size} color={color} />
+          ),
+        }}
+      />
+      {/* <Tabs.Screen
+        name='add-task'
+        options={{
+          href: null,
+        }}
+      /> */}
+      <Tabs.Screen
+        name='tasks'
+        options={{
+          title: 'All Tasks',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name='list' size={size} color={color}
             />
           ),
         }}
       />
- 
-      <Tabs.Screen
-        name='tasks'
-        options={{
-          title: 'All tasks',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons 
-              name='list' 
-              size={size} 
-              color={color} 
-            />
-          ),
-        }}
-        />
     </Tabs>
   )
 }

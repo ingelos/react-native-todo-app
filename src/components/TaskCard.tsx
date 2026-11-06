@@ -1,11 +1,12 @@
+import { useTasks } from "@/context/TaskContext";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTasks } from "../context/TaskContext.js";
 
 
 export default function TaskCard({ task }) {
     const { toggleTask, deleteTask } = useTasks();
 
     return (
+     
         <View style={[styles.card]}>
             <TouchableOpacity
                 onPress={() => toggleTask(task.id)}

@@ -1,5 +1,5 @@
+import { TaskProvider } from "@/context/TaskContext";
 import { Stack } from "expo-router";
-import { TaskProvider } from '../context/TaskContext.js';
 
 export default function RootLayout() {
   return (
@@ -7,6 +7,7 @@ export default function RootLayout() {
     <TaskProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name='(tabs)' />
+        <Stack.Screen name='add-task' />
       </Stack>
     </TaskProvider>
   );
