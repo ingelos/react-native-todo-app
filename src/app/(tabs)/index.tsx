@@ -9,15 +9,6 @@ import { StyleSheet, Text, View } from "react-native";
 export default function HomeScreen() {
   const { tasks } = useTasks();
 
-  // const priorityOrder = {
-  //   urgent: 1,
-  //   secondary: 2,
-  //   additional: 3
-  // };
-
-  // const sortedTasks = [...tasks].sort(
-  //   (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-
   return (
     <View style={globalStyles.screen}>
       <Text style={globalStyles.title}>
