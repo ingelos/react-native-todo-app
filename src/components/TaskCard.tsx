@@ -8,16 +8,16 @@ export default function TaskCard({ task, onToggleHome }) {
 
     const priorityColors = {
         urgent: {
-            background: '#aebca6',
-            border: '#747b70',
+            background: '#c1aaa2',
+            border: '#393230',
         },
         secondary: {
-            background: '#c7ac95',
-            border: '#8d7d6e',
+            background: '#d5baa5',
+            border: '#3c342f',
         },
         additional: {
-            background: '#e7d6c6',
-            border: '#ae9076',
+            background: '#e6d9c8',
+            border: '#3d3a35',
         },
     };
 
@@ -59,7 +59,7 @@ export default function TaskCard({ task, onToggleHome }) {
                 <Ionicons
                     name={task.shownOnHome ? 'home' : 'home-outline'}
                     size={20}
-                    color={task.shownOnHome ? '#f8f3ef' : '#595757'}
+                    color={task.shownOnHome ? '#5c4841' : '#595757'}
                 />
             </TouchableOpacity>
 

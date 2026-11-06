@@ -1,15 +1,14 @@
 import { useTasks } from "@/context/TaskContext";
 import { colors, globalStyles } from "@/styles/global";
-import { router } from "expo-router";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 
 export default function AddTaskScreen() {
-
+    const router = useRouter();
     const [name, setName] = useState('');
     const [priority, setPriority] = useState('secondary');
-
 
     const { addTask } = useTasks();
 
@@ -18,11 +17,11 @@ export default function AddTaskScreen() {
 
         addTask(name.trim(), priority);
 
-        router.replace('/');
+        router.back();
     };
 
     const handleCancel = () => {
-        router.replace('/');
+        router.back();
     }
 
     const priorities = ['urgent', 'secondary', 'additional'];
@@ -138,6 +137,7 @@ const styles = StyleSheet.create({
     },
     selectedPriority: {
         backgroundColor: colors.surface,
+        borderColor: colors.surface,
     },
     priorityText: {
         fontSize: 14,
@@ -170,15 +170,14 @@ const styles = StyleSheet.create({
     addButton: {
         flex: 1,
         height: 45,
-        backgroundColor: colors.primary,
-        borderColor: '#473d33',
+        backgroundColor: '#b1a18a',
+        borderColor: '#564e46',
         borderWidth: 1,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
     },
     addButtonText: {
-        color: colors.background,
         fontSize: 16,
         fontWeight: '600',
     }

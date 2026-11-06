@@ -7,7 +7,7 @@ export default function RootLayout() {
     <TaskProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name='(tabs)' />
-        <Stack.Screen name='add-task' />
+        {/* <Stack.Screen name='add-task' /> */}
       </Stack>
     </TaskProvider>
   );
