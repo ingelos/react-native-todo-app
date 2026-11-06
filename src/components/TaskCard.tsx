@@ -1,29 +1,70 @@
 import { useTasks } from "@/context/TaskContext";
+import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 export default function TaskCard({ task }) {
     const { toggleTask, deleteTask } = useTasks();
 
+    const priorityColors = {
+        urgent: {
+            background: '#aebca6',
+            border: '#747b70',
+        },
+        secondary: {
+            background: '#bca28b',
+            border: '#8d7d6e',
+        },
+        additional: {
+            background: '#e7d6c6',
+            border: '#ae9076',
+        },
+    };
+
+    const colors = priorityColors[task.priority];
+
     return (
-     
-        <View style={[styles.card]}>
+
+        <View
+            style={[styles.card,
+            {
+                backgroundColor: colors.background,
+                borderColor: colors.border,
+            },
+            task.completed && styles.completedCard,
+            ]}>
             <TouchableOpacity
                 onPress={() => toggleTask(task.id)}
-                style={{ flex: 1 }}
+                style={styles.checkbox}
             >
-                <Text style={{
-                    textDecorationLine: task.completed ? 'line-through' : 'none',
-                    opacity: task.completed ? 0.5 : 1,
-                }}>
+                <Ionicons
+                    name={task.completed ? 'checkmark-circle' : 'ellipse-outline'}
+                    size={24}
+                    color={colors.text}
+                />
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => toggleTask(task.id)}
+                style={styles.taskName}
+            >
+                <Text style={[styles.taskText, {
+                    color: colors.text,
+                }]}
+                >
                     {task.name}
                 </Text>
             </TouchableOpacity>
+
             <TouchableOpacity
-                onPress={() => deleteTask(task.id)}>
-                <Text>Delete</Text>
+                onPress={() => deleteTask(task.id)}
+                style={styles.deleteButton}
+            >
+                <Ionicons  
+                    name='trash-outline'
+                    size={20}
+                />
             </TouchableOpacity>
-        </View>
+        </View >
     );
 }
 
@@ -32,15 +73,31 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        borderWidth: 2,
+        borderWidth: 1,
         borderRadius: 12,
-        padding: 12,
+        paddingHorizontal: 15,
+        paddingVertical: 8,
+        // minHeight: 50,
     },
-    value: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#ffffff',
-        marginTop: 4,
-    }
+    checkbox: {
+        marginRight: 12,
+    },
+    taskName: {
+        flex: 1,
+    },
+    taskText: {
+        fontSize: 16,
+        fontWeight: '500'
+    },
+    completedCard: {
+        opacity: 0.65,
+    },
+    completedText: {
+        textDecorationLine: 'line-through',
+    },
+    deleteButton: {
+        padding: 5,
+        marginLeft: 10,
+    },
 })
 

@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     input: {
-        borderWidth: 2,
+        borderWidth: 1,
         fontWeight: '200',
         borderRadius: 10,
         width: '100%',
@@ -135,11 +135,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
     },
     selectedPriority: {
-        backgroundColor: '#2e2f23',
+         backgroundColor: colors.surface,
     },
     priorityText: {
         fontSize: 14,
-        color: '#555555',
         textTransform: 'capitalize',
     },
     selectedPriorityText: {
@@ -169,13 +168,13 @@ const styles = StyleSheet.create({
     addButton: {
         flex: 1,
         height: 50,
-        backgroundColor: '#734e30',
+        backgroundColor: '#806349',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
     },
     addButtonText: {
-        color: '#ffffff',
+        color: colors.background,
         fontSize: 16,
         fontWeight: '600',
     }
